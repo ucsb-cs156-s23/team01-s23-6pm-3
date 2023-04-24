@@ -74,15 +74,15 @@ describe("articleUtils tests", () => {
 
         test("When articles is JSON of three articles, should return that JSON", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
-            const mockarticleCollection = {
+            const threeArticles = articleFixtures.threeArticles;
+            const mockArticleCollection = {
                 nextId: 10,
-                articles: threearticles,
+                articles: threeArticles,
             };
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock(mockarticleCollection)
+                createGetItemMock(mockArticleCollection)
             );
 
             const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
@@ -92,7 +92,7 @@ describe("articleUtils tests", () => {
             const result = articleUtils.get();
 
             // assert
-            expect(result).toEqual(mockarticleCollection);
+            expect(result).toEqual(mockArticleCollection);
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
@@ -100,12 +100,12 @@ describe("articleUtils tests", () => {
     describe("getById", () => {
         test("Check that getting a article by id works", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
-            const idToGet = threearticles[1].id;
+            const threeArticles = articleFixtures.threeArticles;
+            const idToGet = threeArticles[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             // act
@@ -113,17 +113,17 @@ describe("articleUtils tests", () => {
 
             // assert
 
-            const expected = { article: threearticles[1] };
+            const expected = { article: threeArticles[1] };
             expect(result).toEqual(expected);
         });
 
         test("Check that getting a non-existing article returns an error", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
+            const threeArticles = articleFixtures.threeArticles;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             // act
@@ -136,11 +136,11 @@ describe("articleUtils tests", () => {
 
         test("Check that an error is returned when id not passed", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
+            const threeArticles = articleFixtures.threeArticles;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             // act
@@ -154,7 +154,7 @@ describe("articleUtils tests", () => {
     describe("add", () => {
         test("Starting from [], check that adding one article works", () => {
             // arrange
-            const article = articleFixtures.onearticle[0];
+            const article = articleFixtures.oneArticle[0];
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
                 createGetItemMock({ nextId: 1, articles: [] })
@@ -172,7 +172,7 @@ describe("articleUtils tests", () => {
                 "articles",
                 JSON.stringify({
                     nextId: 2,
-                    articles: articleFixtures.onearticle,
+                    articles: articleFixtures.oneArticle,
                 })
             );
         });
@@ -181,33 +181,33 @@ describe("articleUtils tests", () => {
     describe("update", () => {
         test("Check that updating an existing article works", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
-            const updatedarticle = {
-                ...threearticles[0],
+            const threeArticles = articleFixtures.threeArticles;
+            const updatedArticle = {
+                ...threeArticles[0],
                 name: "Updated Name",
             };
-            const threearticlesUpdated = [
-                updatedarticle,
-                threearticles[1],
-                threearticles[2],
+            const threeArticlesUpdated = [
+                updatedArticle,
+                threeArticles[1],
+                threeArticles[2],
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = articleUtils.update(updatedarticle);
+            const result = articleUtils.update(updatedArticle);
 
             // assert
             const expected = {
                 articleCollection: {
                     nextId: 5,
-                    articles: threearticlesUpdated,
+                    articles: threeArticlesUpdated,
                 },
             };
             expect(result).toEqual(expected);
@@ -218,24 +218,24 @@ describe("articleUtils tests", () => {
         });
         test("Check that updating an non-existing article returns an error", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
+            const threeArticles = articleFixtures.threeArticles;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
             setItemSpy.mockImplementation((_key, _value) => null);
 
-            const updatedarticle = {
+            const updatedArticle = {
                 id: 99,
                 name: "Fake Name",
                 description: "Fake Description",
             };
 
             // act
-            const result = articleUtils.update(updatedarticle);
+            const result = articleUtils.update(updatedArticle);
 
             // assert
             const expectedError = `article with id 99 not found`;
@@ -247,13 +247,13 @@ describe("articleUtils tests", () => {
     describe("del", () => {
         test("Check that deleting a article by id works", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
-            const idToDelete = threearticles[1].id;
-            const threearticlesUpdated = [threearticles[0], threearticles[2]];
+            const threeArticles = articleFixtures.threeArticles;
+            const idToDelete = threeArticles[1].id;
+            const threeArticlesUpdated = [threeArticles[0], threeArticles[2]];
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
@@ -267,7 +267,7 @@ describe("articleUtils tests", () => {
             const expected = {
                 articleCollection: {
                     nextId: 5,
-                    articles: threearticlesUpdated,
+                    articles: threeArticlesUpdated,
                 },
             };
             expect(result).toEqual(expected);
@@ -278,11 +278,11 @@ describe("articleUtils tests", () => {
         });
         test("Check that deleting a non-existing article returns an error", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
+            const threeArticles = articleFixtures.threeArticles;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
@@ -298,11 +298,11 @@ describe("articleUtils tests", () => {
         });
         test("Check that an error is returned when id not passed", () => {
             // arrange
-            const threearticles = articleFixtures.threearticles;
+            const threeArticles = articleFixtures.threeArticles;
 
             const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
             getItemSpy.mockImplementation(
-                createGetItemMock({ nextId: 5, articles: threearticles })
+                createGetItemMock({ nextId: 5, articles: threeArticles })
             );
 
             // act
