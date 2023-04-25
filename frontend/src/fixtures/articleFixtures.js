@@ -1,5 +1,5 @@
 const articleFixtures = {
-    oneRestaurant: [
+    oneArticle: [
         {
             id: 1,
             title: "Jack Stein for A.S. President",
@@ -9,7 +9,7 @@ const articleFixtures = {
         },
     ],
 
-    threeRestaurants: [
+    threeArticles: [
         {
             id: 2,
             title: "Interactive Learning Pavilion delivers first new classrooms in 50 years",
