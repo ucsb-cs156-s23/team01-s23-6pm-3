@@ -100,7 +100,9 @@ function SongForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     id="album"
                     type="text"
                     isInvalid={Boolean(errors.description)}
-                    {...register("album")}
+                    {...register("album", {
+                        required: "Album description is required."
+                    })}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.description?.message}
@@ -114,7 +116,9 @@ function SongForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     id="year-released"
                     type="text"
                     isInvalid={Boolean(errors.description)}
-                    {...register("year-released")}
+                    {...register("year-released", {
+                        required: "Year of songs' release is required."
+                    })}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.description?.message}
