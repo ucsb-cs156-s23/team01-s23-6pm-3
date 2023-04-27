@@ -24,12 +24,9 @@ jest.mock('main/utils/songUtils', () => {
                     songs: [
                         {
                             "id": 3,
-                            "name": "Freebirds",
-                            "address": "879 Embarcadero del Norte",
-                            "city": "Isla Vista",
-                            "state": "CA",
-                            "zip": "93117",
-                            "description": "Burrito joint, and iconic Isla Vista location"
+                            "title": "Toxic",
+                            "artist": "Britney Spears",
+                            "album": "In The Zone",
                         },
                     ]
                 }
@@ -65,12 +62,15 @@ describe("SongIndexPage tests", () => {
         expect(createSongButton).toBeInTheDocument();
         expect(createSongButton).toHaveAttribute("style", "float: right;");
 
-        const name = screen.getByText("Freebirds");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Toxic");
+        expect(title).toBeInTheDocument();
 
-        const description = screen.getByText("Burrito joint, and iconic Isla Vista location");
-        expect(description).toBeInTheDocument();
+        const artist = screen.getByText("Britney Spears");
+        expect(artist).toBeInTheDocument();
 
+        const album = screen.getByText("In The Zone");
+        expect(album).toBeInTheDocument();
+        
         expect(screen.getByTestId("SongTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("SongTable-cell-row-0-col-Details-button")).toBeInTheDocument();
         expect(screen.getByTestId("SongTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
@@ -82,17 +82,20 @@ describe("SongIndexPage tests", () => {
 
         render(
             <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <SongIndexPage />
-                </MemoryRouter>
+            <MemoryRouter>
+            <SongIndexPage />
+            </MemoryRouter>
             </QueryClientProvider>
-        );
-
-        const name = screen.getByText("Freebirds");
-        expect(name).toBeInTheDocument();
-
-        const description = screen.getByText("Burrito joint, and iconic Isla Vista location");
-        expect(description).toBeInTheDocument();
+            );
+            
+            const title = screen.getByText("Toxic");
+            expect(title).toBeInTheDocument();
+            
+            const artist = screen.getByText("Britney Spears");
+            expect(artist).toBeInTheDocument();
+    
+            const album = screen.getByText("In The Zone");
+            expect(album).toBeInTheDocument();
 
         const deleteButton = screen.getByTestId("SongTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
@@ -108,7 +111,7 @@ describe("SongIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `SongIndexPage deleteCallback: {"id":3,"name":"Freebirds","description":"Burrito joint, and iconic Isla Vista location"}`;
+        const expectedMessage = `SongIndexPage deleteCallback: {"id":3,"title":"Toxic","artist":"Britney Spears","album":"In The Zone"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
