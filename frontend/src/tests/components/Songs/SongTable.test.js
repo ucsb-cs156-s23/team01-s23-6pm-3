@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import RestaurantTable, { showCell } from "main/components/Restaurants/RestaurantTable";
-import { restaurantFixtures } from "fixtures/restaurantFixtures";
+import SongTable, { showCell } from "main/components/Songs/SongTable";
+import { songFixtures } from "fixtures/songFixtures";
 import mockConsole from "jest-mock-console";
 
 const mockedNavigate = jest.fn();
@@ -12,12 +12,12 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedNavigate
 }));
 
-describe("RestaurantTable tests", () => {
+describe("SongTable tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = ["id", "Name", "Description"];
   const expectedFields = ["id", "name", "description"];
-  const testId = "RestaurantTable";
+  const testId = "SongTable";
 
   test("showCell function works properly", () => {
     const cell = {
@@ -32,7 +32,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={[]} />
+          <SongTable songs={[]} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -45,7 +45,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={restaurantFixtures.threeRestaurants} />
+          <SongTable songs={songFixtures.threeSongs} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -85,7 +85,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={restaurantFixtures.threeRestaurants} showButtons={false} />
+          <SongTable songs={songFixtures.threeSongs} showButtons={false} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -120,7 +120,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={restaurantFixtures.threeRestaurants} />
+          <SongTable songs={songFixtures.threeSongs} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -136,7 +136,7 @@ describe("RestaurantTable tests", () => {
     fireEvent.click(editButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/restaurants/edit/2'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/songs/edit/2'));
 
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
@@ -154,7 +154,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={restaurantFixtures.threeRestaurants} />
+          <SongTable songs={songFixtures.threeSongs} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -170,7 +170,7 @@ describe("RestaurantTable tests", () => {
     fireEvent.click(detailsButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/restaurants/details/2'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/songs/details/2'));
 
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
@@ -188,7 +188,7 @@ describe("RestaurantTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RestaurantTable restaurants={restaurantFixtures.threeRestaurants} />
+          <SongTable songs={songFixtures.threeSongs} />
         </MemoryRouter>
       </QueryClientProvider>
     );
