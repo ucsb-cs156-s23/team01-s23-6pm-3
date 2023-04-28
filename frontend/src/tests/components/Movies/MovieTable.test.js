@@ -61,10 +61,10 @@ describe("MovieTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("San Andreas");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Freebirds");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Inception");
 
     const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
     expect(detailsButton).toBeInTheDocument();
