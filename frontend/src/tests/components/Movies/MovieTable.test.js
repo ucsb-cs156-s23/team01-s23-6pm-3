@@ -141,7 +141,7 @@ describe("MovieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"San Andreas","year":"2015"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"San Andreas"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("MovieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"San Andreas","year":"2015"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"San Andreas"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -195,7 +195,7 @@ describe("MovieTable tests", () => {
 
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("San Andreas");
 
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
@@ -206,7 +206,7 @@ describe("MovieTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Cristino's Bakery","description":"This place is takeout only.  It may look mostly like a bakery with Mexican pastries, but it also has amazing burritos and tacos"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"San Andreas"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
