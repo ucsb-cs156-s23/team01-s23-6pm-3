@@ -63,15 +63,17 @@ describe("ArticleTable tests", () => {
             screen.getByTestId(`${testId}-cell-row-0-col-id`)
         ).toHaveTextContent("2");
         expect(
-            screen.getByTestId(`${testId}-cell-row-0-col-name`)
-        ).toHaveTextContent("Cristino's Bakery");
+            screen.getByTestId(`${testId}-cell-row-0-col-title`)
+        ).toHaveTextContent(
+            "Interactive Learning Pavilion delivers first new classrooms in 50 years"
+        );
 
         expect(
             screen.getByTestId(`${testId}-cell-row-1-col-id`)
         ).toHaveTextContent("3");
         expect(
-            screen.getByTestId(`${testId}-cell-row-1-col-name`)
-        ).toHaveTextContent("Freebirds");
+            screen.getByTestId(`${testId}-cell-row-1-col-title`)
+        ).toHaveTextContent("Jessy Gonzalez for Internal Vice President");
 
         const detailsButton = screen.getByTestId(
             `${testId}-cell-row-0-col-Details-button`
@@ -120,21 +122,22 @@ describe("ArticleTable tests", () => {
             screen.getByTestId(`${testId}-cell-row-0-col-id`)
         ).toHaveTextContent("2");
         expect(
-            screen.getByTestId(`${testId}-cell-row-0-col-name`)
-        ).toHaveTextContent("Cristino's Bakery");
+            screen.getByTestId(`${testId}-cell-row-0-col-title`)
+        ).toHaveTextContent(
+            "Interactive Learning Pavilion delivers first new classrooms in 50 years"
+        );
 
         expect(
             screen.getByTestId(`${testId}-cell-row-1-col-id`)
         ).toHaveTextContent("3");
         expect(
-            screen.getByTestId(`${testId}-cell-row-1-col-name`)
-        ).toHaveTextContent("Freebirds");
+            screen.getByTestId(`${testId}-cell-row-1-col-title`)
+        ).toHaveTextContent("Jessy Gonzalez for Internal Vice President");
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();
         expect(screen.queryByText("Details")).not.toBeInTheDocument();
     });
-
     test("Edit button navigates to the edit page", async () => {
         // arrange
         const restoreConsole = mockConsole();
@@ -153,8 +156,10 @@ describe("ArticleTable tests", () => {
             await screen.findByTestId(`${testId}-cell-row-0-col-id`)
         ).toHaveTextContent("2");
         expect(
-            screen.getByTestId(`${testId}-cell-row-0-col-name`)
-        ).toHaveTextContent("Cristino's Bakery");
+            screen.getByTestId(`${testId}-cell-row-0-col-title`)
+        ).toHaveTextContent(
+            "Interactive Learning Pavilion delivers first new classrooms in 50 years"
+        );
 
         const editButton = screen.getByTestId(
             `${testId}-cell-row-0-col-Edit-button`
@@ -172,7 +177,7 @@ describe("ArticleTable tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `editCallback: {"id":2,"name":"Cristino's Bakery","description":"This place is takeout only.  It may look mostly like a bakery with Mexican pastries, but it also has amazing burritos and tacos"})`;
+        const expectedMessage = `editCallback: {"id":2,"title":"Interactive Learning Pavilion delivers first new classrooms in 50 years","image":"https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19232553/MaddyFangio-1975.jpg","content":"The building provides 2,000 seats of classroom space, increasing the university’s classroom capacity by 35%, according to The Current. The Interactive Learning Pavilion (ILP) also features two student lounges on the third and fourth floors, power outlets under outdoor handrail tables and under lecture hall tables and lecture hall desks that rotate 180 degrees to encourage group collaboration."})`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
     });
@@ -195,8 +200,10 @@ describe("ArticleTable tests", () => {
             await screen.findByTestId(`${testId}-cell-row-0-col-id`)
         ).toHaveTextContent("2");
         expect(
-            screen.getByTestId(`${testId}-cell-row-0-col-name`)
-        ).toHaveTextContent("Cristino's Bakery");
+            screen.getByTestId(`${testId}-cell-row-0-col-title`)
+        ).toHaveTextContent(
+            "Interactive Learning Pavilion delivers first new classrooms in 50 years"
+        );
 
         const detailsButton = screen.getByTestId(
             `${testId}-cell-row-0-col-Details-button`
@@ -214,7 +221,7 @@ describe("ArticleTable tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `detailsCallback: {"id":2,"name":"Cristino's Bakery","description":"This place is takeout only.  It may look mostly like a bakery with Mexican pastries, but it also has amazing burritos and tacos"})`;
+        const expectedMessage = `detailsCallback: {"id":2,"title":"Interactive Learning Pavilion delivers first new classrooms in 50 years","image":"https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19232553/MaddyFangio-1975.jpg","content":"The building provides 2,000 seats of classroom space, increasing the university’s classroom capacity by 35%, according to The Current. The Interactive Learning Pavilion (ILP) also features two student lounges on the third and fourth floors, power outlets under outdoor handrail tables and under lecture hall tables and lecture hall desks that rotate 180 degrees to encourage group collaboration."})`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
     });
@@ -237,8 +244,10 @@ describe("ArticleTable tests", () => {
             await screen.findByTestId(`${testId}-cell-row-0-col-id`)
         ).toHaveTextContent("2");
         expect(
-            screen.getByTestId(`${testId}-cell-row-0-col-name`)
-        ).toHaveTextContent("Cristino's Bakery");
+            screen.getByTestId(`${testId}-cell-row-0-col-title`)
+        ).toHaveTextContent(
+            "Interactive Learning Pavilion delivers first new classrooms in 50 years"
+        );
 
         const deleteButton = screen.getByTestId(
             `${testId}-cell-row-0-col-Delete-button`
@@ -251,7 +260,7 @@ describe("ArticleTable tests", () => {
         // assert - check that the console.log was called with the expected message
         await waitFor(() => expect(console.log).toHaveBeenCalled());
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `deleteCallback: {"id":2,"name":"Cristino's Bakery","description":"This place is takeout only.  It may look mostly like a bakery with Mexican pastries, but it also has amazing burritos and tacos"})`;
+        const expectedMessage = `deleteCallback: {"id":2,"title":"Interactive Learning Pavilion delivers first new classrooms in 50 years","image":"https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19232553/MaddyFangio-1975.jpg","content":"The building provides 2,000 seats of classroom space, increasing the university’s classroom capacity by 35%, according to The Current. The Interactive Learning Pavilion (ILP) also features two student lounges on the third and fourth floors, power outlets under outdoor handrail tables and under lecture hall tables and lecture hall desks that rotate 180 degrees to encourage group collaboration."})`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
     });
