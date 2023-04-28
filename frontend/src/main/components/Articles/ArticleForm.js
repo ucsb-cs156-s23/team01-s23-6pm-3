@@ -37,14 +37,14 @@ function ArticleForm({
             )}
 
             <Form.Group className="mb-3">
-                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Label htmlFor="title">Title</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-name"}
-                    id="name"
+                    data-testid={testIdPrefix + "-title"}
+                    id="title"
                     type="text"
-                    isInvalid={Boolean(errors.name)}
-                    {...register("name", {
-                        required: "Name is required.",
+                    isInvalid={Boolean(errors.title)}
+                    {...register("title", {
+                        required: "Title is required.",
                         maxLength: {
                             value: 30,
                             message: "Max length 30 characters",
@@ -57,18 +57,34 @@ function ArticleForm({
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Label htmlFor="Image">Image</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-description"}
-                    id="description"
+                    data-testid={testIdPrefix + "-Image"}
+                    id="Image"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("description", {
-                        required: "Description is required.",
+                    isInvalid={Boolean(errors.Image)}
+                    {...register("Image", {
+                        required: "Image is required.",
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.Image?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor="content">Content</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-content"}
+                    id="content"
+                    type="text"
+                    isInvalid={Boolean(errors.content)}
+                    {...register("content", {
+                        required: "Content is required.",
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.content?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
