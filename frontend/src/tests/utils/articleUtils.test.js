@@ -184,7 +184,7 @@ describe("articleUtils tests", () => {
             const threeArticles = articleFixtures.threeArticles;
             const updatedArticle = {
                 ...threeArticles[0],
-                name: "Updated Name",
+                title: "Updated Title",
             };
             const threeArticlesUpdated = [
                 updatedArticle,
@@ -230,8 +230,9 @@ describe("articleUtils tests", () => {
 
             const updatedArticle = {
                 id: 99,
-                name: "Fake Name",
-                description: "Fake Description",
+                title: "Fake Title",
+                image: "Fake Image",
+                content: "Fake Content",
             };
 
             // act
