@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import SongCreatePage from "main/pages/Songs/SongCreatePage";
+import SongEditPage from "main/pages/Songs/SongEditPage";
+import SongIndexPage from "main/pages/Songs/SongIndexPage";
+import SongDetailsPage from "main/pages/Songs/SongDetailsPage";
+
 
 function App() {
 
@@ -29,6 +34,11 @@ function App() {
         <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
         <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
         <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
+
+        <Route exact path="/songs/create" element={<SongCreatePage />} />
+        <Route exact path="/songs/edit/:id" element={<SongEditPage />} />
+        <Route exact path="/songs/details/:id" element={<SongDetailsPage />} />
+        <Route exact path="/songs/" element={<SongIndexPage />} />
 
       </Routes>
     </BrowserRouter>
