@@ -1,29 +1,30 @@
-import React from "react";
-import { Button, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { Button, Form } from 'react-bootstrap';
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
 
-function ArticleForm({
-    initialContents,
-    submitAction,
-    buttonLabel = "Create",
-}) {
+function ArticleForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+
     const navigate = useNavigate();
-
+    
     // Stryker disable all
     const {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm({ defaultValues: initialContents || {} });
+    } = useForm(
+        { defaultValues: initialContents || {}, }
+    );
     // Stryker enable all
-
+   
     const testIdPrefix = "ArticleForm";
 
     return (
+
         <Form onSubmit={handleSubmit(submitAction)}>
+
             {initialContents && (
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3" >
                     <Form.Label htmlFor="id">Id</Form.Label>
                     <Form.Control
                         data-testid={testIdPrefix + "-id"}
@@ -36,7 +37,7 @@ function ArticleForm({
                 </Form.Group>
             )}
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="title">Title</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-title"}
@@ -45,34 +46,34 @@ function ArticleForm({
                     isInvalid={Boolean(errors.title)}
                     {...register("title", {
                         required: "Title is required.",
-                        maxLength: {
+                        maxLength : {
                             value: 30,
-                            message: "Max length 30 characters",
-                        },
+                            message: "Max length 30 characters"
+                        }
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.name?.message}
+                    {errors.title?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
-                <Form.Label htmlFor="Image">Image</Form.Label>
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="image">Image</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-Image"}
-                    id="Image"
+                    data-testid={testIdPrefix + "-image"}
+                    id="image"
                     type="text"
-                    isInvalid={Boolean(errors.Image)}
-                    {...register("Image", {
-                        required: "Image is required.",
+                    isInvalid={Boolean(errors.image)}
+                    {...register("image", {
+                        required: "Image is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.Image?.message}
+                    {errors.image?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="content">Content</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-content"}
@@ -80,7 +81,7 @@ function ArticleForm({
                     type="text"
                     isInvalid={Boolean(errors.content)}
                     {...register("content", {
-                        required: "Content is required.",
+                        //required: "Content is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -88,7 +89,11 @@ function ArticleForm({
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+
+            <Button
+                type="submit"
+                data-testid={testIdPrefix + "-submit"}
+            >
                 {buttonLabel}
             </Button>
             <Button
@@ -98,8 +103,10 @@ function ArticleForm({
             >
                 Cancel
             </Button>
+
         </Form>
-    );
+
+    )
 }
 
 export default ArticleForm;
