@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import SongCreatePage from "main/pages/Songs/SongCreatePage";
+import SongEditPage from "main/pages/Songs/SongEditPage";
+import SongIndexPage from "main/pages/Songs/SongIndexPage";
+import SongDetailsPage from "main/pages/Songs/SongDetailsPage";
+
 import ArticleCreatePage from "main/pages/Articles/ArticleCreatePage";
 import ArticleEditPage from "main/pages/Articles/ArticleEditPage";
 import ArticleIndexPage from "main/pages/Articles/ArticleIndexPage";
