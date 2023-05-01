@@ -5,47 +5,48 @@ import { articleUtils } from "main/utils/articleUtils";
 
 const showCell = (cell) => JSON.stringify(cell.row.values);
 
+
 const defaultDeleteCallback = async (cell) => {
     console.log(`deleteCallback: ${showCell(cell)})`);
     articleUtils.del(cell.row.values.id);
-};
+}
 
 export default function ArticleTable({
     articles,
     deleteCallback = defaultDeleteCallback,
     showButtons = true,
-    testIdPrefix = "ArticleTable",
-}) {
-    const navigate = useNavigate();
+    testIdPrefix = "ArticleTable" }) {
 
+    const navigate = useNavigate();
+ 
     const editCallback = (cell) => {
         console.log(`editCallback: ${showCell(cell)})`);
-        navigate(`/articles/edit/${cell.row.values.id}`);
-    };
+        navigate(`/articles/edit/${cell.row.values.id}`)
+    }
 
     const detailsCallback = (cell) => {
         console.log(`detailsCallback: ${showCell(cell)})`);
-        navigate(`/articles/details/${cell.row.values.id}`);
-    };
+        navigate(`/articles/details/${cell.row.values.id}`)
+    }
 
     const columns = [
         {
-            Header: "id",
-            accessor: "id", // accessor is the "key" in the data
+            Header: 'id',
+            accessor: 'id', // accessor is the "key" in the data
         },
 
         {
-            Header: "Title",
-            accessor: "title",
+            Header: 'Title',
+            accessor: 'title',
         },
         {
-            Header: "Image",
-            accessor: "image",
+            Header: 'Image',
+            accessor: 'image',
         },
         {
-            Header: "Content",
-            accessor: "content",
-        },
+            Header: 'Content',
+            accessor: 'content',
+        }
     ];
 
     const buttonColumns = [
@@ -53,17 +54,15 @@ export default function ArticleTable({
         ButtonColumn("Details", "primary", detailsCallback, testIdPrefix),
         ButtonColumn("Edit", "primary", editCallback, testIdPrefix),
         ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix),
-    ];
+    ]
 
     const columnsToDisplay = showButtons ? buttonColumns : columns;
 
-    return (
-        <OurTable
-            data={articles}
-            columns={columnsToDisplay}
-            testid={testIdPrefix}
-        />
-    );
-}
+    return <OurTable
+        data={articles}
+        columns={columnsToDisplay}
+        testid={testIdPrefix}
+    />;
+};
 
 export { showCell };
