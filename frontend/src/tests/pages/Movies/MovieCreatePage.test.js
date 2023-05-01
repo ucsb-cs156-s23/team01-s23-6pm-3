@@ -40,8 +40,9 @@ describe("MovieCreatePage tests", () => {
         mockAdd.mockReturnValue({
             "movie": {
                 id: 3,
-                name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                name: "Inception",
+                starring: "Leonardo DiCaprio",
+                director: "Christopher Nolan"
             }
         });
 
@@ -57,15 +58,19 @@ describe("MovieCreatePage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const starringInput = screen.getByLabelText("Starring");
+        expect(starringInput).toBeInTheDocument();
+
+        const directorInput = screen.getByLabelText("Director");
+        expect(directorInput).toBeInTheDocument();
 
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(nameInput, { target: { value: 'Inception' } })
+            fireEvent.change(starringInput, { target: { value: 'Leonardo DiCaprio' } })
+            fireEvent.change(directorInput, { target: { value: 'Christopher Nolan' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +80,7 @@ describe("MovieCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdMovie: {"movie":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdMovie: {"movie":{"id":3,"name":"Inception","starring":"Leonardo DiCaprio","director":"Christopher Nolan"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
