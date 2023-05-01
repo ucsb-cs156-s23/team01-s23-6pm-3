@@ -40,8 +40,12 @@ export default function MovieTable({
             accessor: 'name',
         },
         {
-            Header: 'Description',
-            accessor: 'description',
+            Header: 'Starring',
+            accessor: 'starring',
+        },
+        {
+            Header: 'Director',
+            accessor: 'director',
         }
     ];
 

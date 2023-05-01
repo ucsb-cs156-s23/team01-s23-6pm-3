@@ -1,29 +1,31 @@
-import React from 'react';
-import MovieForm from "main/components/Movies/MovieForm"
-import { movieFixtures } from 'fixtures/movieFixtures';
+import React from "react";
+import MovieTable from "main/components/Movies/MovieTable";
+import { movieFixtures } from "fixtures/movieFixtures";
 
 export default {
-    title: 'components/Movies/MovieForm',
-    component: MovieForm
+    title: "components/Movies/MovieTable",
+    component: MovieTable,
 };
 
 const Template = (args) => {
-    return (
-        <MovieForm {...args} />
-    )
+    return <MovieTable {...args} />;
 };
 
-export const Default = Template.bind({});
+export const Empty = Template.bind({});
 
-Default.args = {
-    submitText: "Create",
-    submitAction: () => { console.log("Submit was clicked"); }
+Empty.args = {
+    movies: [],
 };
 
-export const Show = Template.bind({});
+export const ThreeSubjectsNoButtons = Template.bind({});
 
-Show.args = {
-    Movie: movieFixtures.oneMovie,
-    submitText: "",
-    submitAction: () => { }
+ThreeSubjectsNoButtons.args = {
+    movies: movieFixtures.threeMovies,
+    showButtons: false,
+};
+
+export const ThreeSubjectsWithButtons = Template.bind({});
+ThreeSubjectsWithButtons.args = {
+    movies: movieFixtures.threeMovies,
+    showButtons: true,
 };
