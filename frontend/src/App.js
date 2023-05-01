@@ -44,6 +44,11 @@ function App() {
         <Route exact path="/articles/details/:id" element={<ArticleDetailsPage />} />
         <Route exact path="/articles/" element={<ArticleIndexPage />} />
 
+        <Route exact path="/songs/create" element={<SongCreatePage />} />
+        <Route exact path="/songs/edit/:id" element={<SongEditPage />} />
+        <Route exact path="/songs/details/:id" element={<SongDetailsPage />} />
+        <Route exact path="/songs/" element={<SongIndexPage />} />
+
       </Routes>
     </BrowserRouter>
   );
