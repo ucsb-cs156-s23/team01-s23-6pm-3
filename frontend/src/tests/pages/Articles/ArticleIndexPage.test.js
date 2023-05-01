@@ -24,8 +24,8 @@ jest.mock("main/utils/articleUtils", () => {
                     articles: [
                         {
                             id: 3,
-                            title: "Student Advocate General: No endorsement",
-                            image: "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19231540/MG_9982-1.jpg",
+                            title: "Student Advocate General",
+                            image: "2023/04/19231540/MG_9982-1",
                             content:
                                 "Serving as UCSB’s “campus public defender,” the core of the Office of the Student Advocate (OSA) is advocating for students regarding university matters, ensuring that the Student Advocate General (SAG) and the office staff comprehensively work through these student cases. The divisions under the OSA’s purview are academic issues, student conduct, personal grievances and financial issues.",
                         },
@@ -62,12 +62,12 @@ describe("ArticleIndexPage tests", () => {
         expect(createArticleButton).toHaveAttribute("style", "float: right;");
 
         const title = screen.getByText(
-            "Student Advocate General: No endorsement"
+            "Student Advocate General"
         );
         expect(title).toBeInTheDocument();
 
         const image = screen.getByText(
-            "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19231540/MG_9982-1.jpg"
+            "2023/04/19231540/MG_9982-1"
         );
         expect(image).toBeInTheDocument();
 
@@ -99,12 +99,12 @@ describe("ArticleIndexPage tests", () => {
         );
 
         const title = screen.getByText(
-            "Student Advocate General: No endorsement"
+            "Student Advocate General"
         );
         expect(title).toBeInTheDocument();
 
         const image = screen.getByText(
-            "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19231540/MG_9982-1.jpg"
+            "2023/04/19231540/MG_9982-1"
         );
         expect(image).toBeInTheDocument();
 
@@ -130,7 +130,7 @@ describe("ArticleIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `ArticleIndexPage deleteCallback: {"id":3,"title":"Student Advocate General: No endorsement","image":"https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/19231540/MG_9982-1.jpg","content":"Serving as UCSB’s “campus public defender,” the core of the Office of the Student Advocate (OSA) is advocating for students regarding university matters, ensuring that the Student Advocate General (SAG) and the office staff comprehensively work through these student cases. The divisions under the OSA’s purview are academic issues, student conduct, personal grievances and financial issues."}`;
+        const expectedMessage = `ArticleIndexPage deleteCallback: {"id":3,"title":"Student Advocate General","image":"2023/04/19231540/MG_9982-1","content":"Serving as UCSB’s “campus public defender,” the core of the Office of the Student Advocate (OSA) is advocating for students regarding university matters, ensuring that the Student Advocate General (SAG) and the office staff comprehensively work through these student cases. The divisions under the OSA’s purview are academic issues, student conduct, personal grievances and financial issues."}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
     });
