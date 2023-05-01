@@ -81,7 +81,7 @@ function ArticleForm({ initialContents, submitAction, buttonLabel = "Create" }) 
                     type="text"
                     isInvalid={Boolean(errors.content)}
                     {...register("content", {
-                        //required: "Content is required."
+                        required: "Content is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
