@@ -32,8 +32,8 @@ jest.mock("main/utils/articleUtils", () => {
                 return {
                     article: {
                         id: 3,
-                        title: "Jessy Gonzalez for Internal Vice President",
-                        image: "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/20001430/Jessy-Gonzalez-headshot.-NishaMally_DailyNexus.jpg",
+                        title: "Jessy Gonzalez",
+                        image: "Jessy-Gonzalez-headshot",
                         content:
                             "The Associated Students (A.S.) Internal Vice President (IVP) leads the Senate and serves as the representative for A.S. in all internal affairs. Given Gonzalez’s extensive history of legislation, student advocacy work and familiarity with senatorial processes, the Nexus believes that Gonzalez would impactfully restore function and efficiency through exceptional leadership to the 74th Senate.",
                     },
@@ -68,12 +68,12 @@ describe("ArticleEditPage tests", () => {
         expect(screen.getByTestId("ArticleForm-title")).toBeInTheDocument();
         expect(
             screen.getByDisplayValue(
-                "Jessy Gonzalez for Internal Vice President"
+                "Jessy Gonzalez"
             )
         ).toBeInTheDocument();
         expect(
             screen.getByDisplayValue(
-                "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2023/04/20001430/Jessy-Gonzalez-headshot.-NishaMally_DailyNexus.jpg"
+                "Jessy-Gonzalez-headshot"
             )
         ).toBeInTheDocument();
         expect(
@@ -89,8 +89,8 @@ describe("ArticleEditPage tests", () => {
         mockUpdate.mockReturnValue({
             article: {
                 id: 3,
-                title: "Jacob Eisner for Internal Vice President",
-                image: "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2019/04/AS-Election-Results.jpg",
+                title: "Jacob Eisner",
+                image: "2019/04/AS-Election-Results",
                 content:
                     "The Associated Students (A.S.) Internal Vice President (IVP) leads the Senate and serves as the representative for A.S. in all internal affairs. Given Gonzalez’s extensive history of legislation, student advocacy work and familiarity with senatorial processes, the Nexus believes that Eisner would impactfully restore function and efficiency through exceptional leadership to the 74th Senate.",
             },
@@ -118,11 +118,11 @@ describe("ArticleEditPage tests", () => {
 
         await act(async () => {
             fireEvent.change(titleInput, {
-                target: { value: "Jacob Eisner for Internal Vice President" },
+                target: { value: "Jacob Eisner" },
             });
             fireEvent.change(imageInput, {
                 target: {
-                    value: "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2019/04/AS-Election-Results.jpg",
+                    value: "2019/04/AS-Election-Results",
                 },
             });
             fireEvent.change(contentInput, {
@@ -141,7 +141,7 @@ describe("ArticleEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `updatedArticle: {"article":{"id":3,"title":"Jacob Eisner for Internal Vice President","image":"https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2019/04/AS-Election-Results.jpg","content":"The Associated Students (A.S.) Internal Vice President (IVP) leads the Senate and serves as the representative for A.S. in all internal affairs. Given Gonzalez’s extensive history of legislation, student advocacy work and familiarity with senatorial processes, the Nexus believes that Eisner would impactfully restore function and efficiency through exceptional leadership to the 74th Senate."}`;
+        const expectedMessage = `updatedArticle: {"article":{"id":3,"title":"Jacob Eisner","image":"2019/04/AS-Election-Results","content":"The Associated Students (A.S.) Internal Vice President (IVP) leads the Senate and serves as the representative for A.S. in all internal affairs. Given Gonzalez’s extensive history of legislation, student advocacy work and familiarity with senatorial processes, the Nexus believes that Eisner would impactfully restore function and efficiency through exceptional leadership to the 74th Senate."}`;
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
