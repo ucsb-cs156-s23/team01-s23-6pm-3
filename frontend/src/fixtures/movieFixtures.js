@@ -4,9 +4,8 @@ const movieFixtures = {
       {
        "id": 1,
         "name": "John Wick",
-        "starring actor": "Keanu Reeves",
+        "starring": "Keanu Reeves",
         "director": "Chad Stahelski",
-        "year": "2014"  
       }
     ],
 
@@ -15,25 +14,22 @@ const movieFixtures = {
         {
             "id": 2,
             "name": "San Andreas",
-            "starring actor": "Dwayne Johnson",
+            "starring": "Dwayne Johnson",
             "director": "Brad Peyton",
-            "year": "2015"        
         },
 
         {
             "id": 3,
             "name": "Inception",
-            "starring actor": "Leonardo DiCaprio",
+            "starring": "Leonardo DiCaprio",
             "director": "Christopher Nolan",
-            "year": "2014"    
         },
 
         {
             "id": 4,
             "name": "Forrest Gump",
-            "starring actor": "Tom Hanks",
+            "starring": "Tom Hanks",
             "director": "Robert Zemeckis",
-            "year": "1994"        
         },
         
     ]
