@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-
 function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
     const navigate = useNavigate();
@@ -58,18 +57,34 @@ function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Label htmlFor="starring">Starring</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-description"}
-                    id="description"
+                    data-testid={testIdPrefix + "-starring"}
+                    id="starring"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("description", {
-                        required: "Description is required."
+                    isInvalid={Boolean(errors.starring)}
+                    {...register("starring", {
+                        required: "Starring is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.starring?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="director">Director</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-director"}
+                    id="director"
+                    type="text"
+                    isInvalid={Boolean(errors.director)}
+                    {...register("director", {
+                        //required: "Director is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.director?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 

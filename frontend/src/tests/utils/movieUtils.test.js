@@ -34,7 +34,7 @@ describe("movieUtils tests", () => {
             const expectedJSON = JSON.stringify(expected);
             expect(setItemSpy).toHaveBeenCalledWith("movies", expectedJSON);
         });
-        
+
         test("When movies is null in local storage, should set to empty list", () => {
 
             // arrange
@@ -93,11 +93,9 @@ describe("movieUtils tests", () => {
             expect(result).toEqual(mockMovieCollection);
             expect(setItemSpy).not.toHaveBeenCalled();
         });
-        
     });
-    
 
-    
+
     describe("getById", () => {
         test("Check that getting a movie by id works", () => {
 
@@ -150,8 +148,6 @@ describe("movieUtils tests", () => {
         });
 
     });
-    
-    
     describe("add", () => {
         test("Starting from [], check that adding one movie works", () => {
 
@@ -172,8 +168,7 @@ describe("movieUtils tests", () => {
                 JSON.stringify({ nextId: 2, movies: movieFixtures.oneMovie }));
         });
     });
-    
-///*
+
     describe("update", () => {
         test("Check that updating an existing movie works", () => {
 
@@ -229,8 +224,7 @@ describe("movieUtils tests", () => {
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
-    ///*/
-///*
+
     describe("del", () => {
         test("Check that deleting a movie by id works", () => {
 
@@ -292,6 +286,5 @@ describe("movieUtils tests", () => {
             expect(result).toEqual({ error: expectedError });
         });
     });
-    //*/
 });
 

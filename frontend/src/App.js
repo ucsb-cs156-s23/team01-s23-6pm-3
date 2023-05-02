@@ -20,6 +20,11 @@ import SongEditPage from "main/pages/Songs/SongEditPage";
 import SongIndexPage from "main/pages/Songs/SongIndexPage";
 import SongDetailsPage from "main/pages/Songs/SongDetailsPage";
 
+import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
+import MovieEditPage from "main/pages/Movies/MovieEditPage";
+import MovieIndexPage from "main/pages/Movies/MovieIndexPage";
+import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
+
 function App() {
 
   const reload = () => window.location.reload();
@@ -48,6 +53,11 @@ function App() {
         <Route exact path="/songs/edit/:id" element={<SongEditPage />} />
         <Route exact path="/songs/details/:id" element={<SongDetailsPage />} />
         <Route exact path="/songs/" element={<SongIndexPage />} />
+
+        <Route exact path="/movies/create" element={<MovieCreatePage />} />
+        <Route exact path="/movies/edit/:id" element={<MovieEditPage />} />
+        <Route exact path="/movies/details/:id" element={<MovieDetailsPage />} />
+        <Route exact path="/movies/" element={<MovieIndexPage />} />
 
       </Routes>
     </BrowserRouter>

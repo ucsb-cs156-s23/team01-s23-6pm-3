@@ -24,8 +24,9 @@ jest.mock('main/utils/movieUtils', () => {
                 return {
                     movie: {
                         id: 3,
-                        name: "Freebirds",
-                        description: "Burritos"
+                        name: "Inception",
+                        starring: "Leonardo DiCaprio",
+                        director: "Christopher Nolan"
                     }
                 }
             }
@@ -59,8 +60,9 @@ describe("MovieEditPage tests", () => {
         );
 
         expect(screen.getByTestId("MovieForm-name")).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Freebirds')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Burritos')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Inception')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Leonardo DiCaprio')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Christopher Nolan')).toBeInTheDocument();
     });
 
     test("redirects to /movies on submit", async () => {
@@ -70,8 +72,9 @@ describe("MovieEditPage tests", () => {
         mockUpdate.mockReturnValue({
             "movie": {
                 id: 3,
-                name: "South Coast Deli (Goleta)",
-                description: "Sandwiches, Salads and more"
+                name: "Inception 2",
+                starring: "Danny Devito",
+                director: "michael bay"
             }
         });
 
@@ -87,15 +90,19 @@ describe("MovieEditPage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const starringInput = screen.getByLabelText("Starring");
+        expect(starringInput).toBeInTheDocument();
+
+        const directorInput = screen.getByLabelText("Director");
+        expect(directorInput).toBeInTheDocument();
 
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli (Goleta)' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches, Salads and more' } })
+            fireEvent.change(nameInput, { target: { value: 'Inception 2' } })
+            fireEvent.change(starringInput, { target: { value: 'Danny Devito' } })
+            fireEvent.change(directorInput, { target: { value: 'michael bay' } })
             fireEvent.click(updateButton);
         });
 
@@ -105,7 +112,7 @@ describe("MovieEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedMovie: {"movie":{"id":3,"name":"South Coast Deli (Goleta)","description":"Sandwiches, Salads and more"}`
+        const expectedMessage =  `updatedMovie: {"movie":{"id":3,"name":"Inception 2","starring":"Danny Devito","director":"michael bay"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
