@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-
 function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
     const navigate = useNavigate();
@@ -72,7 +71,7 @@ function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     {errors.starring?.message}
                 </Form.Control.Feedback>
             </Form.Group>
-            
+
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="director">Director</Form.Label>
                 <Form.Control
@@ -81,13 +80,14 @@ function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     type="text"
                     isInvalid={Boolean(errors.director)}
                     {...register("director", {
-                        required: "Director is required."
+                        //required: "Director is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.director?.message}
                 </Form.Control.Feedback>
             </Form.Group>
+
 
             <Button
                 type="submit"
